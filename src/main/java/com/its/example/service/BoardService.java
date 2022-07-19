@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
@@ -23,6 +24,8 @@ import java.util.Optional;
 public class BoardService {
     private  final BoardRepository boardRepository;
     private  final MemberRepository memberRepository;
+
+
 
     public Long save(BoardDTO boardDTO) throws IOException {
         MultipartFile boardFile= boardDTO.getBoardFile();
@@ -64,5 +67,15 @@ public class BoardService {
 
                 ));
         return  boardList;
+    }
+
+
+    public BoardDTO findById(Long id) {
+        Optional<BoardEntity> optionalBoardEntity = boardRepository.findById(id);
+        if(optionalBoardEntity.isPresent()){
+            return BoardDTO.ToBoardDTO(optionalBoardEntity.get());
+        }else {
+            return  null;
+        }
     }
 }

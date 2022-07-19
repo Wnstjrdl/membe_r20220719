@@ -1,5 +1,6 @@
 package com.its.example.dto;
 
+import com.its.example.entity.BoardEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,4 +28,16 @@ public class BoardDTO {
         this.boardHits = boardHits;
         this.boardCreatedDate = boardCreatedDate;
     }
+    public  static BoardDTO ToBoardDTO(BoardEntity boardEntity){
+        BoardDTO boardDTO=new BoardDTO();
+        boardDTO.setId(boardEntity.getId());
+        boardDTO.setBoardTitle(boardEntity.getBoardTitle());
+        boardDTO.setBoardWriter(boardEntity.getBoardWriter());
+        boardDTO.setBoardContents(boardEntity.getBoardContents());
+        boardDTO.setBoardHits(boardEntity.getBoardHits());
+        boardDTO.setBoardFileName(boardEntity.getBoardFileName());
+        boardDTO.setBoardCreatedDate(boardEntity.getBoardCreatedDate());
+        return boardDTO;
+    }
+
 }
