@@ -42,11 +42,12 @@ public class MemberController {
             model.addAttribute("loginResult",loginResult);
             session.setAttribute("loginEmail",loginResult.getMemberEmail());
             session.setAttribute("id",loginResult.getId());
-            return  "redirect:board/paging";
+            return  "redirect:/board/paging";
         }else {
             return  "memberPages/login";
         }
 
     }
+
 
     }

@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter@Setter
@@ -25,6 +27,8 @@ public class MemberEntity {
     @Column(length = 500)
     private String memberProfile;
 
+    @OneToMany(mappedBy = "memberEntity",cascade = CascadeType.PERSIST,orphanRemoval = false,fetch =FetchType.LAZY)
+    List<BoardEntity> boardEntityList=new ArrayList<>();
 
 
 
