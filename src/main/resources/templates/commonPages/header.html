@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="header">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <style>
+        #header{
+            background-color: black;
+        }
+    </style>
+    <div id="header">
+        header
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+            <header class="mb-auto">
+                <div>
+                    <nav class="nav nav-masthead justify-content-center float-md-end">
+                        <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="/">홈</a> &nbsp; &nbsp;
+                        <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="/save">회원가입</a> &nbsp;&nbsp;
+                        <a class="nav-link fw-bold py-1 px-0" href="/login">로그인</a>&nbsp;&nbsp;
+                        <a class="nav-link fw-bold py-1 px-0" href="/paging">글목록</a>&nbsp;&nbsp;
+                    </nav>
+                </div>
+
+            </header>
+        </div>
+    </div>
+
+
+</th:block>
+</html>
