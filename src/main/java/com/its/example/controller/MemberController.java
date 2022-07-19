@@ -4,11 +4,10 @@ import com.its.example.dto.MemberDTO;
 import com.its.example.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Controller
@@ -20,7 +19,7 @@ public class MemberController {
 
     //회원가입
     @GetMapping("/save")
-    public String save(){
+    public String saveForm(){
         return  "memberPages/save";
     }
 
@@ -30,6 +29,24 @@ public class MemberController {
         memberService.save(memberDTO);
         return  "memberPages/login";
     }
+    //로그인
+    @GetMapping("/login")
+    public  String loginForm(){
+        return  "memberPages/login";
+    }
+    //로그인 처리
+    @PostMapping("/login")
+    public  String login(@ModelAttribute MemberDTO memberDTO, Model model, HttpSession session){
+        MemberDTO loginResult=memberService.login(memberDTO);
+        if(loginResult != null){
+            model.addAttribute("loginResult",loginResult);
+            session.setAttribute("loginEmail",loginResult.getMemberEmail());
+            session.setAttribute("id",loginResult.getId());
+            return  "redirect:board/paging";
+        }else {
+            return  "memberPages/login";
+        }
 
+    }
 
     }
