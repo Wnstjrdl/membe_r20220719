@@ -20,6 +20,11 @@ public class BoardDTO {
     private MultipartFile boardFile;
     private  String boardFileName;
 
-
-
+    public BoardDTO(Long id, String boardTitle, String boardWriter, int boardHits, LocalDateTime boardCreatedDate) {
+        this.id = id;
+        this.boardTitle = boardTitle;
+        this.boardWriter = boardWriter;
+        this.boardHits = boardHits;
+        this.boardCreatedDate = boardCreatedDate;
+    }
 }
