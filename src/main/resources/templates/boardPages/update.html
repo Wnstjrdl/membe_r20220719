@@ -5,7 +5,10 @@
     <title>Title</title>
 </head>
 <body>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
 
 <form action="/board/update"  method="post" name="updateForm">
     글번호: <input class="form-control" type="text" name="id" th:value="${boardUpdate.id}" readonly><br />
