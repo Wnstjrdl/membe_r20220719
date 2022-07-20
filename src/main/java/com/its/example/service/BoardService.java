@@ -81,4 +81,8 @@ public class BoardService {
 
     public void delete(Long id) {boardRepository.deleteById(id);
     }
+
+    public void update(BoardDTO boardDTO) {
+        boardRepository.save(BoardEntity.toUpdateEntity(boardDTO));
+    }
 }
