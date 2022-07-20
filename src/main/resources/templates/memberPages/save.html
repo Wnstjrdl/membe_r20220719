@@ -12,9 +12,11 @@
     이메일:<input  type ="text"  class="form-control" name="memberEmail" id="memberEmail" placeholder="이메일을 입력하세요" onblur="EmailDuplicate()">
     <span id="Email-dup-result"></span> <br />
 
-    비밀번호:<input type ="text" class="form-control" name="memberPassword"  placeholder="비밀번호를 입력하세요"><br />
+    비밀번호:<input type ="text" class="form-control" name="memberPassword" id="memberPassword" placeholder="비밀번호를 입력하세요"><br />
+    <div id="pwCheck"></div>
     이름:<input type="text" class="form-control" name="memberName" placeholder="이름을 입력하세요"><br />
-    전화번호:<input type="text" class="form-control" name="memberMobile" placeholder="전화번호 입력하세요"><br />
+    전화번호:<input type="text" class="form-control" name="memberMobile" id="memberMobile" placeholder="전화번호 입력하세요"><br />
+    <div id="mobileCheck"></div>
     프로필:<input type="file"  name="memberFile" ><br />
     <input class="btn btn-primary" type="submit" value="회원가입">
 </form>
@@ -32,10 +34,10 @@
                 },
                 success:function (result){
                     if(result== "ok"){
-                        checkResult.innerHTML="사용가능합니다";
+                        checkResult.innerHTML="사용가능합니다😊";
                         checkResult.style.color="green";
                     }else {
-                        checkResult.innerHTML="중복된 아이디 입니다";
+                        checkResult.innerHTML="중복된 아이디 입니다😒";
                         checkResult.style.color="red";
                     }
                 },
@@ -44,5 +46,34 @@
                 }
             });
         }
+        const pwJ=/^[A-Za-z0-9]{4,12}$/;
+        $("#memberPassword").blur(function () {
+            if(pwJ.test($("#memberPassword").val())){
+                console.log("ture");
+                $("#pwCheck").text("사용가능합니다😊")
+                $("#pwCheck").css("color","green");
+            }else {
+                console.log("false");
+                $("#pwCheck").text("숫자,문자로만4~12자리입력😒")
+                $("#pwCheck").css("color","red");
+            }
+
+
+        })
+
+        const mobileJ= /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+        $("#memberMobile").blur(function () {
+            if(mobileJ.test($("#memberMobile").val())){
+                console.log("ture");
+                $("#mobileCheck").text("전화번호가 입력되었습니다😊")
+                $("#mobileCheck").css("color","green");
+            }else {
+                console.log("false");
+                $("#mobileCheck").text("다시입력해주세요😒")
+                $("#mobileCheck").css("color","red");
+            }
+
+
+        })
     </script>
 </html>
