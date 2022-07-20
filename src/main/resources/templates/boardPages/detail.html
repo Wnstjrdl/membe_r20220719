@@ -35,6 +35,12 @@
             <td><button class="btn btn-danger" onclick="deleteById()">삭제</button></td>
             <td><button class="btn btn-primary" onclick="updateById()">수정</button></td>
         </div>
+
+        <div th:if="${session.loginEmail}">
+            <div th:if="${session.loginEmail.toString().equals('admin')}">
+                <td><button class="btn btn-danger" onclick="deleteById()">관리자용삭제</button></td>
+        </div>
+        </div>
     </tr>
     </tbody>
 </table>
