@@ -44,4 +44,12 @@ public class MemberService {
         }
         }
 
+    public String EmailCheck(String memberEmail) {
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberEmail(memberEmail);
+        if(optionalMemberEntity.isEmpty()){
+            return "ok";
+        }else {
+            return "no";
+        }
+    }
 }

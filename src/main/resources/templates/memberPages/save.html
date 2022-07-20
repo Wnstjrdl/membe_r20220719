@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <head>
   <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -8,7 +9,9 @@
 </head>
 <body>
 <form action="/member/save" method="post"  enctype="multipart/form-data" >
-    이메일:<input  type ="text"  class="form-control" name="memberEmail"  placeholder="이메일을 입력하세요"><br />
+    이메일:<input  type ="text"  class="form-control" name="memberEmail" id="memberEmail" placeholder="이메일을 입력하세요" onblur="EmailDuplicate()">
+    <span id="Email-dup-result"></span> <br />
+
     비밀번호:<input type ="text" class="form-control" name="memberPassword"  placeholder="비밀번호를 입력하세요"><br />
     이름:<input type="text" class="form-control" name="memberName" placeholder="이름을 입력하세요"><br />
     전화번호:<input type="text" class="form-control" name="memberMobile" placeholder="전화번호 입력하세요"><br />
@@ -16,4 +19,30 @@
     <input class="btn btn-primary" type="submit" value="회원가입">
 </form>
 </body>
+    <script th:inline="javascript">
+        const EmailDuplicate = () => {
+            const  Email=document.getElementById("memberEmail").value;
+            const  checkResult=document.getElementById("Email-dup-result");
+            $.ajax({
+                type:"post",
+                url:"/member/emailCheck",
+                dataType: "text",
+                data:{
+                    "memberEmail":Email
+                },
+                success:function (result){
+                    if(result== "ok"){
+                        checkResult.innerHTML="사용가능합니다";
+                        checkResult.style.color="green";
+                    }else {
+                        checkResult.innerHTML="중복된 아이디 입니다";
+                        checkResult.style.color="red";
+                    }
+                },
+                error:function (){
+                    alert("실패")
+                }
+            });
+        }
+    </script>
 </html>

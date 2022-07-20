@@ -48,6 +48,11 @@ public class MemberController {
         }
 
     }
-
+    // 이메일 중복체크
+    @PostMapping("/emailCheck")
+    public @ResponseBody String emailCheck(@RequestParam String memberEmail){
+        String checkResult= memberService.EmailCheck(memberEmail);
+        return  checkResult;
+    }
 
     }
