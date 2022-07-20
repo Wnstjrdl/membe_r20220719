@@ -15,13 +15,18 @@
             <header class="mb-auto">
                 <div>
                     <nav class="nav nav-masthead justify-content-center float-md-end">
-                        <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="/">홈</a> &nbsp; &nbsp;
-                        <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="/member/save">회원가입</a> &nbsp;&nbsp;
+                        <a class="nav-link fw-bold py-1 px-0 active"  href="/">홈</a> &nbsp; &nbsp;
+                        <a class="nav-link fw-bold py-1 px-0 active"  href="/member/save">회원가입</a> &nbsp;&nbsp;
                         <a class="nav-link fw-bold py-1 px-0" href="/member/login">로그인</a>&nbsp;&nbsp;
                         <a class="nav-link fw-bold py-1 px-0" href="/board/paging">글목록</a>&nbsp;
-                        <a class="nav-link fw-bold py-1 px-0" href="/board/save">글쓰기</a>
+
+                        <div th:if="${session.loginEmail}">
+                            <a class="nav-link fw-bold py-1 px-0" href="/board/save">글쓰기</a>&nbsp;
+                        </div>
                     </nav>
+
                 </div>
+
 
             </header>
         </div>

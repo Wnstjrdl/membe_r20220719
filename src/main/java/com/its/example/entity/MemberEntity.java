@@ -31,7 +31,10 @@ public class MemberEntity {
     List<BoardEntity> boardEntityList=new ArrayList<>();
 
 
-
+    @PreRemove
+    private void  preRemove(){
+        boardEntityList.forEach(board -> board.setMemberEntity(null));
+    }
 
     public static MemberEntity toSaveEntity(MemberDTO memberDTO){
         MemberEntity memberEntity= new MemberEntity();
