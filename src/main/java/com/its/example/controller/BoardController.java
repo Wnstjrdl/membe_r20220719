@@ -2,7 +2,9 @@ package com.its.example.controller;
 
 import com.its.example.common.PagingConst;
 import com.its.example.dto.BoardDTO;
+import com.its.example.dto.CommentDTO;
 import com.its.example.service.BoardService;
+import com.its.example.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.management.Query;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -20,7 +23,7 @@ import java.util.List;
 @RequestMapping("/board")
 public class BoardController {
     private  final BoardService boardService;
-
+    private  final CommentService commentService;
     //글쓰기 화면요청
    @GetMapping("/save")
     public String saveForm(){
@@ -49,6 +52,8 @@ public class BoardController {
         BoardDTO boardDTO = boardService.findById(id);
         model.addAttribute("board", boardDTO);
 
+        List<CommentDTO> commentDTOList= commentService.findAll(id) ;
+        model.addAttribute("commentList",commentDTOList);
         return "boardPages/detail";
     }
     // 글 삭제

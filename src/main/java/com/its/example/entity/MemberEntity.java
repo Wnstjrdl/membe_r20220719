@@ -31,6 +31,11 @@ public class MemberEntity {
     List<BoardEntity> boardEntityList=new ArrayList<>();
 
 
+
+
+    @OneToMany(mappedBy = "memberEntity",cascade = CascadeType.REMOVE,orphanRemoval = true,fetch =FetchType.LAZY)
+    List<CommentEntity> commentEntityList=new ArrayList<>();
+
     @PreRemove
     private void  preRemove(){
         boardEntityList.forEach(board -> board.setMemberEntity(null));

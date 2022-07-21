@@ -44,6 +44,41 @@
     </tr>
     </tbody>
 </table>
+
+    <div class="container mt-3">
+        <div id="comment-write" class="input-group mb-3">
+            <div class="form-floating">
+                <input type="text" id="commentWriter" class="form-control" th:value="${session.loginEmail}"  placeholder="작성자" readonly>
+                <label for="commentWriter">작성자</label>
+            </div>
+            <div class="form-floating">
+                <input type="text" id="commentContents" class="form-control" >
+                <label for="commentContents">내용</label>
+            </div>
+            <button id="comment-write-btn" class="btn btn-primary">작성</button>
+
+        </div>
+
+
+    </div>
+<div id="comment-List">
+    <table class="table">
+        <tr>
+            <td>댓글번호</td>
+            <td>작성자</td>
+            <td>내용</td>
+            <td>작성시간</td>
+        </tr>
+        <tr th:each="comment:${commentList}">
+            <td th:text="${comment.id}"></td>
+            <td th:text="${comment.commentWriter}"></td>
+            <td th:text="${comment.commentContents}"></td>
+            <td th:text="*{#temporals.format(comment.commentCreatedDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+
+        </tr>
+    </table>
+</div>
+
 </body>
     <script th:inline="javascript">
         const deleteById = () => {
@@ -56,5 +91,25 @@
             location.href="/board/update/"+id;
 
         }
+
+        $("#comment-write-btn").click(function () {
+            const cWriter=document.getElementById("commentWriter").value;
+            const cContents=$("#commentContents").val();
+            const boardId = [[${board.id}]];
+
+            $.ajax({
+                type:"post",
+                url:"/comment/save",
+                data:{
+                   "commentWriter":cWriter,
+                    "commentContents":cContents,
+                    "boardId":boardId,
+                },
+                dataType:"json",
+                success:function (result){
+                    console.log(result);
+                }
+            });
+        });
     </script>
 </html>
