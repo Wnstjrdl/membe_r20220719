@@ -23,6 +23,7 @@
                         <div th:if="${session.loginEmail}">
                            <a class="nav-link fw-bold py-1 px-0 "  href="/member/logout">로그아웃</a>&nbsp;
                             <a class="nav-link fw-bold py-1 px-0" href="/board/save">글쓰기</a>
+                            <a class="nav-link fw-bold py-1 px-0" href="/member/myPage">마이페이지로 이동</a>
                             <div th:if="${session.loginEmail.toString().equals('admin')}">
                                 <a class="nav-link fw-bold py-1 px-0 "  href="/member/admin">관리자사이트</a>&nbsp;
 

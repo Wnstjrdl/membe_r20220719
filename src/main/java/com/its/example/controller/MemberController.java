@@ -73,4 +73,40 @@ public class MemberController {
         model.addAttribute("memberList",memberDTOList);
         return  "memberPages/findAll";
     }
+    //회원 삭제
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id){
+        memberService.delete(id);
+        return  "redirect:/member/findAll";
+    }
+    //마이페이지
+    @GetMapping("/myPage")
+    public  String myPage(){
+        return "/memberPages/myPage";
+    }
+
+    //상세조회
+    @GetMapping("/detail/{id}")
+    public  String findById(@PathVariable Long id,Model model){
+        MemberDTO memberDTO=memberService.findById(id);
+        model.addAttribute("member",memberDTO);
+
+        return "memberPages/detail";
+
+    }
+
+    //업데이트
+    @GetMapping("/update")
+    public  String updateForm(HttpSession session, Model model){
+        Long id= (Long)session.getAttribute("id");
+        MemberDTO memberDTO =memberService.findById(id);
+        model.addAttribute("updateMember",memberDTO);
+        return "memberPages/update";
+    }
+    @PostMapping("/update")
+    public  String update(@ModelAttribute MemberDTO memberDTO){
+        memberService.update(memberDTO);
+        return  "redirect:/member/detail/"+memberDTO.getId();
+    }
+
     }
