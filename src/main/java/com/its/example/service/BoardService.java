@@ -17,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -84,5 +86,14 @@ public class BoardService {
 
     public void update(BoardDTO boardDTO) {
         boardRepository.save(BoardEntity.toUpdateEntity(boardDTO));
+    }
+
+    public List<BoardDTO> search(String q1) {
+        List<BoardEntity> boardEntityList = boardRepository.findByBoardTitleContaining(q1);
+        List<BoardDTO>boardDTOList= new ArrayList<>();
+        for (BoardEntity boardEntity: boardEntityList) {
+            boardDTOList.add(BoardDTO.ToBoardDTO(boardEntity));
+    }
+        return  boardDTOList;
     }
 }

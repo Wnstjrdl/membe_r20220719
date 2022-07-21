@@ -11,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.management.Query;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -69,4 +71,13 @@ public class BoardController {
        return  "redirect:/board/detail/"+boardDTO.getId();
     }
 
+    //검색
+    @GetMapping("/search")
+    public String search(@RequestParam("q1")String q1,Model model){
+        List<BoardDTO> searchList=boardService.search(q1);
+
+        model.addAttribute("boardList",searchList);
+
+        return  "boardPages/search";
+    }
 }
