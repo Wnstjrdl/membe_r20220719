@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.management.Query;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,14 +49,21 @@ public class BoardController {
     }
     //상세조회
     @GetMapping("/detail/{id}")
-    public  String findById(@PathVariable Long id,Model model) {
+    public  String findById(@PathVariable Long id, Model model) {
         BoardDTO boardDTO = boardService.findById(id);
         model.addAttribute("board", boardDTO);
 
         List<CommentDTO> commentDTOList= commentService.findAll(id) ;
         model.addAttribute("commentList",commentDTOList);
+
+
+
         return "boardPages/detail";
     }
+
+
+
+
     // 글 삭제
     @GetMapping("/delete/{id}")
     public  String delete(@PathVariable Long id){
@@ -77,6 +85,7 @@ public class BoardController {
     }
 
     //검색
+
     @GetMapping("/search")
     public String search(@RequestParam("q1")String q1,Model model){
         List<BoardDTO> searchList=boardService.search(q1);
@@ -84,5 +93,14 @@ public class BoardController {
         model.addAttribute("boardList",searchList);
 
         return  "boardPages/search";
+    }
+
+
+
+
+
+    @GetMapping("/photoZone")
+    public  String photoZone(){
+       return  "boardPages/photozone";
     }
 }

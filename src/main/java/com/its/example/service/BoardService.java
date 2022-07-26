@@ -71,8 +71,9 @@ public class BoardService {
         return  boardList;
     }
 
-
+@Transactional
     public BoardDTO findById(Long id) {
+        boardRepository.boardHits(id);
         Optional<BoardEntity> optionalBoardEntity = boardRepository.findById(id);
         if(optionalBoardEntity.isPresent()){
             return BoardDTO.ToBoardDTO(optionalBoardEntity.get());
@@ -88,12 +89,14 @@ public class BoardService {
         boardRepository.save(BoardEntity.toUpdateEntity(boardDTO));
     }
 
+
     public List<BoardDTO> search(String q1) {
         List<BoardEntity> boardEntityList = boardRepository.findByBoardTitleContaining(q1);
         List<BoardDTO>boardDTOList= new ArrayList<>();
         for (BoardEntity boardEntity: boardEntityList) {
             boardDTOList.add(BoardDTO.ToBoardDTO(boardEntity));
-    }
+        }
         return  boardDTOList;
     }
+
 }

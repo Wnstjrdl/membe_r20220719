@@ -20,8 +20,16 @@
     프로필:<input type="file"  name="memberFile" ><br />
     <input class="btn btn-primary" type="submit" value="회원가입">
 </form>
+        <button class="btn btn-warning" onclick="back()">돌아가기</button>
 </body>
     <script th:inline="javascript">
+        const back = () => {
+          location.href="/"
+        }
+
+
+
+
         const EmailDuplicate = () => {
             const  Email=document.getElementById("memberEmail").value;
             const  checkResult=document.getElementById("Email-dup-result");

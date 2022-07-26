@@ -74,13 +74,35 @@
             <td th:text="${comment.commentWriter}"></td>
             <td th:text="${comment.commentContents}"></td>
             <td th:text="*{#temporals.format(comment.commentCreatedDate,'yyyy-MM-dd HH:mm:ss')}"></td>
-
+            <td><input class="btn btn-danger" type="button" th:if="(${#strings.equals(session['loginEmail'],'admin')}) or
+(${session.loginEmail}==${comment.commentWriter})"
+                       th:onclick="deleteByComment([[${comment.id}]])"
+                       value="삭제"></td>
         </tr>
     </table>
 </div>
 
 </body>
     <script th:inline="javascript">
+        const deleteByComment = (id) => {
+            console.log("버튼입력")
+            console.log(id);
+            const  reqUrl ="/comment/"+id
+            $.ajax({
+                type: "delete",
+                url: reqUrl,
+
+                success:function (){
+                    alert("댓글이 삭제 되었습니다")
+                    location.reload();
+                }, error(){
+                    alert("ajax 실패")
+                }
+            });
+        }
+
+
+
         const deleteById = () => {
             const id = [[${board.id}]];
             location.href="/board/delete/"+id;
@@ -111,5 +133,6 @@
                 }
             });
         });
+
     </script>
 </html>

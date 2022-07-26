@@ -16,7 +16,7 @@ import java.util.List;
 public class BoardEntity extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "board_Id")
+    @Column(name = "board_id")
     private Long id;
     @Column(length = 20)
     private  String boardTitle;
@@ -35,6 +35,9 @@ private MemberEntity memberEntity;
 
 @OneToMany(mappedBy = "boardEntity",cascade = CascadeType.REMOVE,orphanRemoval = true,fetch = FetchType.LAZY )
 private List<CommentEntity> commentEntityList=new ArrayList<>();
+
+
+
 
     public  static  BoardEntity toSaveEntity(BoardDTO boardDTO,MemberEntity memberEntity){
         BoardEntity boardEntity= new BoardEntity();

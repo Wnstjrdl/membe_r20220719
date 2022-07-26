@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -32,6 +32,12 @@
 
     </tr>
     </tbody>
-</table>
+    <div class="container mt-3">
+        <form action="/board/search" method="get">
+            <input type="text" name="q1" placeholder="제목을 입력하세요">
+            <input type="submit" value="검색">
+        </form>
+    </div>
 
+</table>
 </html>
