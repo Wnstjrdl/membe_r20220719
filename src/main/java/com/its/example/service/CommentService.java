@@ -10,6 +10,8 @@ import com.its.example.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import javax.xml.stream.events.Comment;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class CommentService {
         return  commentRepository.save(commentEntity).getId();
     }
 
-
+    //댓글삭제
     public List<CommentDTO> findAll(Long boardId) {
         BoardEntity boardEntity = boardRepository.findById(boardId).get();
         List<CommentEntity> commentEntityList = boardEntity.getCommentEntityList();
@@ -45,4 +47,7 @@ public class CommentService {
     public void deleteById(Long id) {
         commentRepository.deleteById(id);
     }
+
+
+
 }

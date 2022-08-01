@@ -84,6 +84,13 @@
 
 </body>
     <script th:inline="javascript">
+
+
+
+
+
+
+
         const deleteByComment = (id) => {
             console.log("버튼입력")
             console.log(id);
@@ -93,7 +100,7 @@
                 url: reqUrl,
 
                 success:function (){
-                    alert("댓글이 삭제 되었습니다")
+                    alert("📢댓글이 삭제 되었습니다📢")
                     location.reload();
                 }, error(){
                     alert("ajax 실패")

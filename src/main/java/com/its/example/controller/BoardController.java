@@ -8,15 +8,14 @@ import com.its.example.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.management.Query;
-import javax.servlet.http.HttpSession;
+
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -87,13 +86,15 @@ public class BoardController {
     //검색
 
     @GetMapping("/search")
-    public String search(@RequestParam("q1")String q1,Model model){
-        List<BoardDTO> searchList=boardService.search(q1);
+   public String search(@RequestParam("q1")String q1, Model model){
+      List<BoardDTO> searchList=boardService.search(q1);
 
-        model.addAttribute("boardList",searchList);
+       model.addAttribute("boardList",searchList);
 
-        return  "boardPages/search";
-    }
+       return  "boardPages/search";
+
+
+   }
 
 
 
@@ -103,4 +104,7 @@ public class BoardController {
     public  String photoZone(){
        return  "boardPages/photozone";
     }
+
+
+
 }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <th:block th:replace="commonPages/header :: header"></th:block>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
@@ -95,10 +96,22 @@
 
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
+
+
         <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
     </form>
 </main>
 
 
 </body>
+    <script>
+        $(document).ready(function () {
+        let  fail="[[${fail}]]";
+        if (fail !=""){
+            alert(fail);
+        }else {
+
+        }
+        })
+    </script>
 </html>

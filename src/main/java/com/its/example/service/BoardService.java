@@ -24,6 +24,9 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class BoardService {
+
+    private static final int BLOCK_PAGE_NUM_COUNT = 5;
+    private static final int PAGE_POST_COUNT = 4;
     private  final BoardRepository boardRepository;
     private  final MemberRepository memberRepository;
 
@@ -90,13 +93,14 @@ public class BoardService {
     }
 
 
-    public List<BoardDTO> search(String q1) {
-        List<BoardEntity> boardEntityList = boardRepository.findByBoardTitleContaining(q1);
-        List<BoardDTO>boardDTOList= new ArrayList<>();
-        for (BoardEntity boardEntity: boardEntityList) {
-            boardDTOList.add(BoardDTO.ToBoardDTO(boardEntity));
-        }
-        return  boardDTOList;
-    }
+
+
+   public List<BoardDTO> search(String q1) {
+       List<BoardEntity> boardEntityList = boardRepository.findByBoardTitleContaining(q1);
+       List<BoardDTO>boardDTOList= new ArrayList<>();
+      for (BoardEntity boardEntity: boardEntityList) {
+          boardDTOList.add(BoardDTO.ToBoardDTO(boardEntity)); }
+      return  boardDTOList;}
+
 
 }

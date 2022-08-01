@@ -45,6 +45,7 @@ public class MemberController {
             session.setAttribute("id",loginResult.getId());
             return  "redirect:/board/paging";
         }else {
+            model.addAttribute("fail","로그인 실패");
             return  "memberPages/login";
         }
 
@@ -110,4 +111,11 @@ public class MemberController {
         return  "redirect:/member/detail/"+memberDTO.getId();
     }
 
+
+    // 회원탈퇴
+    @GetMapping("/myDelete/{id}")
+    public String MyDelete(@PathVariable Long id){
+        memberService.delete(id);
+        return  "redirect:/";
+    }
     }
