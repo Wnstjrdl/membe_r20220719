@@ -33,13 +33,13 @@ public class CommentController {
         return commentDTOList;
     }
 
-        @DeleteMapping("/{id}")
+
+    @DeleteMapping("/{id}")
     public ResponseEntity deleteById(@PathVariable("id") Long id){
         commentService.deleteById(id);
 
         return new ResponseEntity(HttpStatus.OK);
         }
-
 
 
 

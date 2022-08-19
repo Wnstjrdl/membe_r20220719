@@ -10,8 +10,7 @@ import com.its.example.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import javax.xml.stream.events.Comment;
+
 import java.util.ArrayList;
 import java.util.List;
 

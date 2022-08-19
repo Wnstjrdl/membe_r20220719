@@ -4,7 +4,7 @@ import com.its.example.errorhandling.exception.ForbiddenException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.awt.*;
+
 
 @Controller
 public class ErrorController {

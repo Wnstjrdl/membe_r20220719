@@ -86,15 +86,15 @@ public class BoardController {
     //검색
 
     @GetMapping("/search")
-   public String search(@RequestParam("q1")String q1, Model model){
-      List<BoardDTO> searchList=boardService.search(q1);
+  public String search(@RequestParam("q1")String q1, Model model){
+     List<BoardDTO> searchList=boardService.search(q1);
 
        model.addAttribute("boardList",searchList);
 
-       return  "boardPages/search";
+      return  "boardPages/search";
 
 
-   }
+  }
 
 
 
@@ -102,7 +102,7 @@ public class BoardController {
 
     @GetMapping("/photoZone")
     public  String photoZone(){
-       return  "boardPages/photozone";
+        return  "boardPages/photozone";
     }
 
 
